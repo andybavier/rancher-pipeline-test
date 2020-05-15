@@ -42,4 +42,5 @@ metadata:
     io.cattle.field/appId: prometheus
     release: prometheus
   name: prometheus-alertmanager
+  namespace: prometheus
   selfLink: /api/v1/namespaces/prometheus/configmaps/prometheus-alertmanager
