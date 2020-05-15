@@ -8,6 +8,8 @@ stages:
         alertmanager.enabled: "true"
       name: prometheus
       targetNamespace: prometheus
+- name: Configure Alertmanager
+  steps:
   - applyYamlConfig:
       path: ./alertmanager.yaml
 timeout: 60
