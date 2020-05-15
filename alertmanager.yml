@@ -1,0 +1,28 @@
+global:
+  resolve_timeout: 5m
+route:
+  group_by: [Alertname]
+  # Send all notifications to me.
+  receiver: demo-alert
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  routes:
+  - match:
+      alertname: DemoAlertName
+    receiver: 'demo-alert'
+
+receivers:
+- name: demo-alert
+  email_configs:
+  - to: your_email@gmail.com
+    from: from_email@gmail.com
+    # Your smtp server address
+    smarthost: smtp.gmail.com:587
+    auth_username: from_email@gmail.com
+    auth_identity: from_email@gmail.com
+    auth_password: 16letter_generated token # you can use gmail account password, but better create a dedicated token for this
+    headers:
+      From: from_email@gmail.com
+      Subject: 'Demo ALERT'
+
