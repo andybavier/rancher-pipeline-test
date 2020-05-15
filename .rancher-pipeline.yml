@@ -1,0 +1,17 @@
+stages:
+- name: Deploy
+  steps:
+  - applyAppConfig:
+      catalogTemplate: cattle-global-data:cord-nem-monitoring
+      version: 1.3.9
+      name: Monitoring
+      targetNamespace: default
+timeout: 60
+notification:
+  recipients:
+  - recipient: '@acb'
+    notifier: c-fqfdk:n-4789b
+  condition:
+  - Success
+  - Changed
+  - Failed
