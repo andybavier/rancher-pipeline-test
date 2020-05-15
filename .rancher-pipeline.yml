@@ -4,8 +4,6 @@ stages:
   - applyAppConfig:
       catalogTemplate: cattle-global-data:library-prometheus
       version: 9.1.0
-      answers:
-        alertmanager.enabled: "false"
       name: prometheus
       targetNamespace: prometheus
 timeout: 60
