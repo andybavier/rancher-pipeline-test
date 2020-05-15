@@ -2,9 +2,9 @@ stages:
 - name: Deploy
   steps:
   - applyAppConfig:
-      catalogTemplate: cattle-global-data:cord-nem-monitoring
-      version: 1.3.9
-      name: nem-monitoring
+      catalogTemplate: cattle-global-data:library-prometheus
+      version: 9.1.0
+      name: prometheus
       targetNamespace: default
 timeout: 60
 notification:
