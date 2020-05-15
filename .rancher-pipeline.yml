@@ -4,7 +4,7 @@ stages:
   - applyAppConfig:
       catalogTemplate: cattle-global-data:cord-nem-monitoring
       version: 1.3.9
-      name: Monitoring
+      name: nem-monitoring
       targetNamespace: default
 timeout: 60
 notification:
