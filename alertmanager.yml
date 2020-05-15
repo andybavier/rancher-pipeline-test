@@ -1,28 +1,45 @@
-global:
-  resolve_timeout: 5m
-route:
-  group_by: [Alertname]
-  # Send all notifications to me.
-  receiver: demo-alert
-  group_wait: 30s
-  group_interval: 5m
-  repeat_interval: 12h
-  routes:
-  - match:
-      alertname: DemoAlertName
-    receiver: 'demo-alert'
+apiVersion: v1
+data:
+  alertmanager.yml: |
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: [Alertname]
+      # Send all notifications to me.
+      receiver: demo-alert
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      routes:
+      - match:
+          alertname: DemoAlertName
+        receiver: 'demo-alert'
 
-receivers:
-- name: demo-alert
-  email_configs:
-  - to: your_email@gmail.com
-    from: from_email@gmail.com
-    # Your smtp server address
-    smarthost: smtp.gmail.com:587
-    auth_username: from_email@gmail.com
-    auth_identity: from_email@gmail.com
-    auth_password: 16letter_generated token # you can use gmail account password, but better create a dedicated token for this
-    headers:
-      From: from_email@gmail.com
-      Subject: 'Demo ALERT'
-
+    receivers:
+    - name: demo-alert
+      email_configs:
+      - to: your_email@gmail.com
+        from: from_email@gmail.com
+        # Your smtp server address
+        smarthost: smtp.gmail.com:587
+        auth_username: from_email@gmail.com
+        auth_identity: from_email@gmail.com
+        auth_password: 16letter_generated token # you can use gmail account password, but better create a dedicated token for this
+        headers:
+          From: from_email@gmail.com
+          Subject: 'Demo ALERT'
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"alertmanager.yml":"global: {}\nreceivers:\n- name: default-receiver\nroute:\n  group_interval: 5m\n  group_wait: 10s\n  receiver: default-receiver\n  repeat_interval: 3h\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"app":"prometheus","chart":"prometheus-9.1.0","component":"alertmanager","heritage":"Tiller","io.cattle.field/appId":"prometheus","release":"prometheus"},"name":"prometheus-alertmanager","namespace":"prometheus","selfLink":"/api/v1/namespaces/prometheus/configmaps/prometheus-alertmanager"}}
+  creationTimestamp: null
+  labels:
+    app: prometheus
+    chart: prometheus-9.1.0
+    component: alertmanager
+    heritage: Tiller
+    io.cattle.field/appId: prometheus
+    release: prometheus
+  name: prometheus-alertmanager
+  selfLink: /api/v1/namespaces/prometheus/configmaps/prometheus-alertmanager
