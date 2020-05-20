@@ -4,9 +4,14 @@ stages:
   - applyAppConfig:
       catalogTemplate: cattle-global-data:library-prometheus
       version: 9.1.0
-      answers:
-        alertmanager.enabled: "true"
-        alertmanagerFiles.alertmanager.yml.route.routes[0].receiver: demo-alert
+      valuesYaml:
+        alertmanager:
+          enabled: "true"
+        alertmanagerFiles:
+          alertmanager.yml:
+            route:
+              routes:
+              - receiver: demo-alert
       name: prometheus
       targetNamespace: prometheus
 timeout: 60
