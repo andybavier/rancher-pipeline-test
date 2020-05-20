@@ -7,8 +7,9 @@ stages:
       valuesYaml:
         alertmanager:
           enabled: "true"
+          configFileName: "alertmanagerYaml"
         alertmanagerFiles:
-          \"alertmanager\.yml\":
+          alertmanagerYaml:
             route:
               routes:
               - receiver: demo-alert
