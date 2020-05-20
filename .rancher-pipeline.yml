@@ -6,12 +6,15 @@ stages:
       version: 9.1.0
       answers:
         alertmanager.enabled: "true"
+        route.group_by: "[Alertname]"
+        route.receiver: "demo-alert"
+        route.group_wait: "30s"
+        route.group_interval: "5m"
+        route.repeat_interval: "12h"
+        route.routes[0].match.alertname: "DemoAlertName"
+        route.routes[0].receiver: "demo-alert"
       name: prometheus
       targetNamespace: prometheus
-- name: Configure Alertmanager
-  steps:
-  - applyYamlConfig:
-      path: ./alertmanager.yaml
 timeout: 60
 notification:
   recipients:
