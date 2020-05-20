@@ -6,13 +6,8 @@ stages:
       version: 9.1.0
       answers:
         alertmanager.enabled: "true"
-        route.group_by: "[Alertname]"
-        route.receiver: "demo-alert"
-        route.group_wait: "30s"
-        route.group_interval: "5m"
-        route.repeat_interval: "12h"
-        route.routes[0].match.alertname: "DemoAlertName"
-        route.routes[0].receiver: "demo-alert"
+        alertmanagerFiles."alertmanager\.yml".route.routes[0].match.alertname: DemoAlertName
+        alertmanagerFiles."alertmanager\.yml".route.routes[0].receiver: demo-alert
       name: prometheus
       targetNamespace: prometheus
 timeout: 60
