@@ -6,8 +6,7 @@ stages:
       version: 9.1.0
       answers:
         alertmanager.enabled: "true"
-        alertmanagerFiles.alertmanager\.yml.route.routes[0].match.alertname: DemoAlertName
-        alertmanagerFiles.alertmanager\.yml.route.routes[0].receiver: demo-alert
+        alertmanagerFiles.alertmanager.yml.route.routes[0].receiver: demo-alert
       name: prometheus
       targetNamespace: prometheus
 timeout: 60
