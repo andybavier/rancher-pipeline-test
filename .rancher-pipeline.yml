@@ -8,7 +8,7 @@ stages:
         alertmanager:
           enabled: "true"
         alertmanagerFiles:
-          alertmanager.yml:
+          "alertmanager\.yml":
             route:
               routes:
               - receiver: demo-alert
